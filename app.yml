@@ -1,0 +1,19 @@
+db:
+    adapter: mysql
+    host: 127.0.0.1
+    port: 3306
+    name: test
+    user: root
+    password: ''
+    charset: utf8
+    collation: utf8_unicode_ci
+app:
+    namespace: MyApp
+    controllers_namespace: \Controllers
+    models_namespace: \Models
+    controllers_path: /app/controllers/
+    models_path: /app/models/
+    auth: 'true'
+    auth_table: auth
+    schema: schema.xsd
+    schema_path: /app/
