@@ -1,0 +1,14 @@
+<?php
+
+  namespace {namespace}\Models;
+
+  use Illuminate\Database\Eloquent\Model as Eloquent;
+
+  class {class_name} extends Eloquent {
+
+    protected $table = "{table}";
+    protected $fillable = {fillable};
+
+  }
+
+?>

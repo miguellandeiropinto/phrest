@@ -1,0 +1,13 @@
+{
+  "autoload": {
+    "psr-4": {
+      "PhRestClient\\Commands\\": "commands",
+      "PhRestClient\\Includes\\": "includes"
+    }
+  },
+  "require": {
+    "clue/commander": "^1.2",
+    "symfony/var-dumper": "^3.2",
+    "symfony/yaml": "^3.2"
+  }
+}

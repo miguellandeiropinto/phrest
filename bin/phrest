@@ -1,0 +1,38 @@
+#!/usr/bin/env php
+<?php
+
+  echo PHP_EOL;
+  echo '[+] Starting PhRest at' . __DIR__ . PHP_EOL;
+
+  require __DIR__ . '/../system/cli/app.php';
+
+  use Symfony\Component\Yaml\Yaml;
+  use Symfony\Component\Yaml\Exception\ParseException;
+  use PhRestClient\CLI;
+
+  $config = null;
+
+  if ( !file_exists('../app.yml' )) {
+    file_put_contents(__DIR__ . '/../app.yml', Yaml::dump([]));
+  }
+
+  try {
+      $config = Yaml::parse(file_get_contents('../app.yml'));
+  } catch (ParseException $e) {
+      printf("Unable to parse the YAML string: %s", $e->getMessage());
+  }
+
+  define('BASE_PATH', __DIR__ );
+  define('APPCTRL_PATH', $config['app']['controllers_path']);
+  define('APPMODELS_PATH', $config['app']['models_path']);
+  define('APP_CONFIG', $config);
+
+
+  $GLOBALS['phrest'] = new CLI($config);
+  global $phrest;
+  $phrest->run();
+
+
+
+
+?>
