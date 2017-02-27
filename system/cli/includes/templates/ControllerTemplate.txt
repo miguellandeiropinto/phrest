@@ -10,24 +10,15 @@
   class {class_name} extends Controller
   {
 
-    public function GET ( Request $request, Response $reponse )
+    public function index ( Request $request, Response $response )
     {
-      #code...
+      # code..
     }
 
-    public function POST ( Request $request, Response $reponse )
+    public function view ( Request $request, Response $response )
     {
-      #code...
-    }
-
-    public function PUT ( Request $request, Response $reponse )
-    {
-      #code...
-    }
-
-    public function DELETE ( Request $request, Response $reponse )
-    {
-      #code...
+      # code..
+      # var_dump($request->params);
     }
 
   }

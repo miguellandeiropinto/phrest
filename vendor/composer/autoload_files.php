@@ -13,6 +13,6 @@ return array(
     '913619c86babbb902e7ffc6850548285' => $vendorDir . '/kherge/file-manager/src/KHerGe/File/functions.php',
     '3569eecfeed3bcf0bad3c998a494ecb8' => $vendorDir . '/sabre/xml/lib/Deserializer/functions.php',
     '93aa591bc4ca510c520999e34229ee79' => $vendorDir . '/sabre/xml/lib/Serializer/functions.php',
-    'd1d9d2649e8209ec63e4f48b9893e987' => $baseDir . '/system/framework/Globals.php',
-    '8c9c0b6fc3935757660755501c45811b' => $baseDir . '/system/framework/Database.php',
+    'd1489783bac2f3f5026a9992f3490c8a' => $baseDir . '/system/Globals.php',
+    'cb6143847b00d64367f4ce5b4bc50a85' => $baseDir . '/system/Database.php',
 );

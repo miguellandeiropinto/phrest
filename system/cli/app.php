@@ -48,9 +48,12 @@
             ];
             $data['table'] = isset($args['values'][0]) ? $args['values'][0] : '';
             $data['fillable'] = isset($args['values'][1]) ? $args['values'][1] : '[]';
+            $data['xmlRoot'] = isset($args['values'][1]) ? $args['values'][2] : '';
+            $data['xmlNamespace'] = isset($args['values'][1]) ? $args['values'][3] : '';
+
             Model::create($data);
 
-            echo "[+] File ".$args['name']." created successfully at " . APPSMODELS_PATH. PHP_EOL;
+            echo "[+] File ".$args['name']." created successfully at " . APPMODELS_PATH. PHP_EOL;
           break;
         }
       });
@@ -60,6 +63,12 @@
           return false;
         Config::set($args['key'], $args['value']);
         echo "[+] Configuration changed successfully." . PHP_EOL;
+      });
+
+      $router->add('config <key>', function ( $args ) {
+        if ( !isset($args['key']))
+          return false;
+        Config::get($args['key']);
       });
 
       $router->add('[--help | -h]', function () use ($router) {

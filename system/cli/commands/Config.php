@@ -22,5 +22,20 @@
 
     }
 
+    public function get ($key)
+    {
+      $config = null;
+      try {
+          $config = Yaml::parse(file_get_contents('../app.yml'));
+      } catch (ParseException $e) {
+          printf("Unable to parse the YAML string: %s", $e->getMessage());
+      }
+      if ( $config )
+      {
+        $arr = explode(':', $key);
+        echo $key . ' => ' . $config[$arr[0]][$arr[1]];
+      }
+    }
+
   }
 ?>

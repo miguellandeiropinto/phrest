@@ -14,28 +14,18 @@ class ComposerStaticInitedd850fa8f8fde1f57b60b4dc05e23d1
         '913619c86babbb902e7ffc6850548285' => __DIR__ . '/..' . '/kherge/file-manager/src/KHerGe/File/functions.php',
         '3569eecfeed3bcf0bad3c998a494ecb8' => __DIR__ . '/..' . '/sabre/xml/lib/Deserializer/functions.php',
         '93aa591bc4ca510c520999e34229ee79' => __DIR__ . '/..' . '/sabre/xml/lib/Serializer/functions.php',
-        'd1d9d2649e8209ec63e4f48b9893e987' => __DIR__ . '/../..' . '/system/framework/Globals.php',
-        '8c9c0b6fc3935757660755501c45811b' => __DIR__ . '/../..' . '/system/framework/Database.php',
+        'd1489783bac2f3f5026a9992f3490c8a' => __DIR__ . '/../..' . '/system/Globals.php',
+        'cb6143847b00d64367f4ce5b4bc50a85' => __DIR__ . '/../..' . '/system/Database.php',
     );
 
     public static $prefixLengthsPsr4 = array (
-        'd' => 
-        array (
-            'diversen\\' => 9,
-        ),
         'S' => 
         array (
-            'System\\Helpers\\' => 15,
-            'System\\Database\\Migration\\' => 26,
             'System\\Database\\' => 16,
             'System\\' => 7,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\Yaml\\' => 23,
             'Symfony\\Component\\Translation\\' => 30,
-            'Symfony\\Component\\Filesystem\\' => 29,
-            'Symfony\\Component\\Debug\\' => 24,
-            'Symfony\\Component\\Console\\' => 26,
-            'Symfony\\Component\\Config\\' => 25,
             'Seld\\JsonLint\\' => 14,
             'Sabre\\Xml\\' => 10,
             'Sabre\\Uri\\' => 10,
@@ -43,7 +33,6 @@ class ComposerStaticInitedd850fa8f8fde1f57b60b4dc05e23d1
         'P' => 
         array (
             'Psr\\Log\\' => 8,
-            'Phinx\\' => 6,
         ),
         'M' => 
         array (
@@ -75,25 +64,13 @@ class ComposerStaticInitedd850fa8f8fde1f57b60b4dc05e23d1
     );
 
     public static $prefixDirsPsr4 = array (
-        'diversen\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/diversen/http-send-file',
-        ),
-        'System\\Helpers\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/system/framework/helpers',
-        ),
-        'System\\Database\\Migration\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/system/framework/db',
-        ),
         'System\\Database\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/system/framework',
+            0 => __DIR__ . '/../..' . '/system',
         ),
         'System\\' => 
         array (
-            0 => __DIR__ . '/../..' . '/system/framework',
+            0 => __DIR__ . '/../..' . '/system',
         ),
         'Symfony\\Polyfill\\Mbstring\\' => 
         array (
@@ -106,22 +83,6 @@ class ComposerStaticInitedd850fa8f8fde1f57b60b4dc05e23d1
         'Symfony\\Component\\Translation\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/translation',
-        ),
-        'Symfony\\Component\\Filesystem\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/filesystem',
-        ),
-        'Symfony\\Component\\Debug\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/debug',
-        ),
-        'Symfony\\Component\\Console\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/console',
-        ),
-        'Symfony\\Component\\Config\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/symfony/config',
         ),
         'Seld\\JsonLint\\' => 
         array (
@@ -138,10 +99,6 @@ class ComposerStaticInitedd850fa8f8fde1f57b60b4dc05e23d1
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
-        ),
-        'Phinx\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/robmorgan/phinx/src/Phinx',
         ),
         'MyApp\\Models\\' => 
         array (
@@ -194,6 +151,13 @@ class ComposerStaticInitedd850fa8f8fde1f57b60b4dc05e23d1
     );
 
     public static $prefixesPsr0 = array (
+        'O' => 
+        array (
+            'OAuth2' => 
+            array (
+                0 => __DIR__ . '/..' . '/adoy/oauth2/src',
+            ),
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Inflector\\' => 

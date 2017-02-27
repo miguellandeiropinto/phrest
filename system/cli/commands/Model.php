@@ -18,7 +18,9 @@
           '{namespace}' => $data['namespace'],
           '{class_name}' => $data['class_name'],
           '{table}' => $data['table'] ? $data['table'] : '',
-          '{fillable}' => $data['fillable'] ? $data['fillable'] : '[]'
+          '{fillable}' => $data['fillable'] ? $data['fillable'] : '[]',
+          '{xmlRoot}' => $data['xmlRoot'] ? $data['xmlRoot'] : '',
+          '{xmlNamespace}' => $data['xmlNamespace'] ? $data['xmlNamespace'] : ''
         ]
       );
 

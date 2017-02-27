@@ -2,12 +2,15 @@
 
   namespace {namespace}\Models;
 
-  use Illuminate\Database\Eloquent\Model as Eloquent;
+  use System\Model;
 
-  class {class_name} extends Eloquent {
+  class {class_name} extends Model
+  {
 
     protected $table = "{table}";
     protected $fillable = {fillable};
+    protected $xmlNamespace = "{xmlNamespace}";
+    protected $xmlRoot = "{xmlRoot}";
 
   }
 
