@@ -16,7 +16,7 @@
       $this->implementations = [];
     }
 
-    function match ( Request $request )
+	function match ( Request $request )
     {
       if ( count($this->slugs) != count($request->getURIArray()) ) return false;
 
@@ -24,22 +24,26 @@
       {
         if ($request->getURIArray()[$i] == $this->slugs[$i]) {
           continue;
-        } else {
+	  } else {
+		  $valid = false;
           foreach ( $this->parameters as $paramName =>$paramURLIndex )
           {
             if ( $paramURLIndex == $i ) {
               if ( preg_match( $this->patterns[$paramName], $request->getURIArray()[$i], $match ) ) {
                 $request->params[$paramName] = $match[0];
+				$valid = true;
                 continue;
               } else {
                 return false;
               }
             }
           }
+		 if ( !$valid )  return false;
         }
       }
       return true;
     }
+
 
     function patterns ( array $patterns = [] )
     {
