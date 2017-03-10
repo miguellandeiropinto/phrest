@@ -20,11 +20,7 @@
       $this->router = new Router;
       $router = $this->router;
 
-      $r = $router->add('user list', function () {
-        echo 'Here are all our users…' . PHP_EOL;
-      });
-
-      $routeCreate = $router->add('create <entity> <name> [<values>...]', function ( $args ) {
+      $router->add('create <entity> <name> [<values>...]', function ( $args ) {
 
         if (!is_string($args['entity']) || !is_string($args['name'])):
           return false;
@@ -58,12 +54,28 @@
         }
       });
 
-      $router->add('config <key> <value>', function ( $args ) {
+        $router->add('config setEnv <name> <value>', function ( $args ) {
+            if ( !$args['name'] && !$args['value']) return false;
+            Config::setEnv( $args['name'], $args['value']);
+        });
+
+        $router->add('config getEnv <name>', function ( $args ) {
+            if ( !$args['name'] ) return false;
+            Config::getEnv( $args['name'] );
+        });
+
+        $router->add('config deleteEnv <name>', function ( $args ) {
+            if ( !$args['name'] ) return false;
+            Config::deleteEnv( $args['name'] );
+        });
+
+      $router->add('config set <key> <value>', function ( $args ) {
         if ( !isset($args['value']) || !isset($args['key']))
           return false;
         Config::set($args['key'], $args['value']);
         echo "[+] Configuration changed successfully." . PHP_EOL;
       });
+
 
       $router->add('config <key>', function ( $args ) {
         if ( !isset($args['key']))

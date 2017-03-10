@@ -6,7 +6,7 @@
     RewriteRule (.*) /index.php/$1 [L]
 </IfModule>
 
+#created by PhRest CLI. 2017-03-10, 01:38:27
 <IfModule mod_env.c>
-    SetEnv HTTP__PRAW sdgfghfdf
+    SetEnv HTTP_PHREST_SSK 12345qwertyasdfghzxcvbzxczxc
 </IfModule>
-

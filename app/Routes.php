@@ -7,4 +7,3 @@
 
   $router->post('/auth', 'AuthController::authenticate');
 
-?>
