@@ -12,10 +12,6 @@
 
   $config = null;
 
-  if ( !file_exists('../app.yml' )) {
-    file_put_contents(__DIR__ . '/../app.yml', Yaml::dump([]));
-  }
-
   try {
       $config = Yaml::parse(file_get_contents('../app.yml'));
   } catch (ParseException $e) {

@@ -7,6 +7,13 @@
 </IfModule>
 
 <IfModule mod_env.c>
-    SetEnv HTTP__PRAW sdgfghfdf
+	SetEnv PR_DB_HOST localhost
+	SetEnv PR_DB_NAME test
+	SetEnv PR_DB_USER root
+	SetEnv PR_DB_PASSWORD 
+	SetEnv PR_DB_CHARSET utf8
+	SetEnv PR_DB_COLLATION utf8_unicode_ci
+	SetEnv PR_DB_PORT 3306
+	SetEnv PR_DB_DRIVER mysql
 </IfModule>
 

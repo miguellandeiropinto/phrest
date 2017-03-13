@@ -3,6 +3,7 @@
 
   use Symfony\Component\Yaml\Yaml;
   use Symfony\Component\Yaml\Exception\ParseException;
+  use PhRestClient\Includes\Log;
 
 
   class Config {
@@ -13,13 +14,13 @@
       try {
           $config = Yaml::parse(file_get_contents('../app.yml'));
       } catch (ParseException $e) {
-          printf("Unable to parse the YAML string: %s", $e->getMessage());
+          Log::printlnd("Unable to parse the YAML string.\n" . INFO_MSG . "Check if app.yml file has a valid structure!", ERROR_MSG);
       }
 
       $keys = explode(':', $key);
       $config[$keys[0]][$keys[1]] = $value;
       file_put_contents('../app.yml', Yaml::dump($config));
-
+      Log::printlnd($keys[0] . ":" .  $keys[1] . " = " . $value );
     }
 
     public function get ($key)
@@ -28,12 +29,12 @@
       try {
           $config = Yaml::parse(file_get_contents('../app.yml'));
       } catch (ParseException $e) {
-          printf("Unable to parse the YAML string: %s", $e->getMessage());
+          Log::printlnd("Unable to parse the YAML string. Check if app.yml file has a valid structure.");
       }
       if ( $config )
       {
         $arr = explode(':', $key);
-        echo $key . ' => ' . $config[$arr[0]][$arr[1]];
+        Log::printlnd($key . ' = ' . $config[$arr[0]][$arr[1]]);
       }
     }
 
@@ -45,7 +46,7 @@
 
       foreach ($lines = explode("\n", $htaccess) as $line )
       {
-        if (strpos($line, 'SetEnv ' . $name) !== false )
+        if (strpos($line, 'SetEnv PR_' . $name) !== false )
         {
           $values = explode(" ", $line);
           $value = end($values);
@@ -53,11 +54,11 @@
       }
       if ( $value )
       {
-        echo sprintf('%s = %s', $name, $value) . PHP_EOL;
-        exit();
+        Log::printlnd($name . " = " . $value);
       }
       echo sprintf("Envoirment variable %s not found.\n", $name);
-      exit();
+      Log::printlnd("Envoirment variable " . $name . " not found!");
+
     }
 
     public function setEnv ( $name, $value )
@@ -73,25 +74,30 @@
           $line = $lines[$i];
           if (strpos($line, '<IfModule mod_env.c>') !== false ) {
               $findOpen = true;
-
           }
 
-          if ( strpos( $line, 'SetEnv ' . $name ) !== false )
+          if ( strpos( $line, 'SetEnv PR_' . $name ) !== false )
           {
-            $line_values = explode(" ", $line);
-            $val = end($line_values);
-            $lines[$i] = str_replace($val, $value, $line);
+              $arr = explode(" ", $line );
+              if ( count($arr) == 3 ) {
+                  unset($arr[2]);
+                  $arr[2] = $value;
+                  $lines[$i] = implode(" ", $arr);
+              } else if (count($arr) == 2 ){
+                  $lines[$i] = implode(" ", $arr) . " " . $value;
+              }
             break;
           }
 
           if ( $findOpen && strpos($line, '</IfModule>') !== false ) {
-             $lines[$i - 1] .= "\n    SetEnv " . $name . " " . $value;
+             $lines[$i - 1] .= "\n\tSetEnv PR_" . $name . " " . $value;
           }
 
         }
 
         $htaccess_2 .= implode("\n", $lines);
         file_put_contents("../.htaccess", $htaccess_2);
+        Log::println("Envoirment variable set successfully. See in .htaccess file.\n\t" . $name . ' = ' . $value);
     }
 
     function deleteEnv ( $name )
@@ -103,7 +109,7 @@
 
         for ( $i = 0; $i < count($lines); $i++) {
           $line = $lines[$i];
-          if ( strpos($line, 'SetEnv ' . $name ) !== false )
+          if ( strpos($line, 'SetEnv PR_' . $name ) !== false )
           {
             $index = $i;
             break;
@@ -117,7 +123,7 @@
 
         $htaccess_2 = implode("\n", $lines);
         file_put_contents('../.htaccess', $htaccess_2);
-
+        Log::println("Envoirment variable " . $name . " deleted succesffuly!");
     }
 
   }

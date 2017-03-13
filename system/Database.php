@@ -4,20 +4,16 @@
 
   use Illuminate\Database\Capsule\Manager as Capsule;
 
-  global $configuration;
-
-  $dbconfig = (object) $configuration->db;
-
   $db = new Capsule;
   $db->addConnection([
-    'driver' => $dbconfig->adapter,
-    'host' => $dbconfig->host,
-    'port' => $dbconfig->port,
-    'database' => $dbconfig->name,
-    'user' => $dbconfig->user,
-    'password' => $dbconfig->password,
-    'charset' => $dbconfig->charset,
-    'collation' => $dbconfig->collation
+    'driver' => DB_DRIVER,
+    'host' => DB_HOST,
+    'port' => DB_PORT,
+    'database' => DB_NAME,
+    'user' => DB_USER,
+    'password' => is_string(DB_PASSWORD) ? DB_PASSWORD : "",
+    'charset' => DB_CHARSET,
+    'collation' => DB_COLLATION
   ]);
 
   $db->setAsGlobal();
