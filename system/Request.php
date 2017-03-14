@@ -33,17 +33,34 @@
     }
 
     function setInput () {
-        $this->input = new \stdClass();
-        $this->input->get = $_GET;
-        $this->input->post = isset($_POST) && count($_POST) > 0 ? $_POST : [];
-        $this->input->put = null;
-        $this->input->delete = null;
-        parse_str(file_get_contents("php://input", "r"), $this->input->put);
-        parse_str(file_get_contents("php://input"), $this->input->delete);
-    }
 
-    function getEntity () {
-      return strtolower($this->URIArray[0]);
+        $this->input = new \stdClass();
+   ;
+        switch (HEADER_CONTENT_TYPE) {
+            case "application/json":
+                $this->input->put = json_decode(file_get_contents('php://input'));
+                $this->input->post = json_decode(file_get_contents("php://input"));
+                $this->input->get = json_decode(file_get_contents("php://input"));
+                $this->input->delete = json_decode(file_get_contents('php://input'));
+                break;
+            case "application/xml":
+
+            break;
+            case "application/x-www-form-urlencoded":
+                $this->input->get = (object) $_GET;
+                $this->input->post = (object) $_POST;
+                parse_str(file_get_contents("php://input"), $this->input->put);
+                $this->input->put = (object) $this->input->put;
+                parse_str(file_get_contents("php://input"), $this->input->delete);
+                $this->input->delete = (object) $this->input->delete;
+            break;
+            default:
+                $this->input->get = (object) $_GET;
+                $this->input->post = (object) $_POST;
+                parse_str(file_get_contents("php://input", "r"), $this->input->put);
+                parse_str(file_get_contents("php://input"), $this->input->delete);
+            break;
+        }
     }
 
     function getURL ()

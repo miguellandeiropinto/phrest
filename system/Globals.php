@@ -15,7 +15,10 @@
       exit();
   }
 
-  define('HEADER_ACCEPT', getallheaders()['Accept'] != 'application/json' && getallheaders()['Accept'] != 'application/xml' ? 'application/json' : getallheaders()['Accept']);
+  $headers = getallheaders();
+
+  define('HEADER_ACCEPT', !isset($headers['Accept']) ? 'application/json' : $headers['Accept']);
+  define('HEADER_CONTENT_TYPE', !isset($headers['Content-Type']) ? 'application/json' : $headers['Content-Type']);
   define('API_KEY', isset($_GET['apikey']) ? $_GET['apikey'] : null);
   define('APP_NS', $configuration->app['namespace']);
   define('CTRLS_PATH', $configuration->app['controllers_path']);
@@ -33,6 +36,6 @@
   define('DB_DRIVER', getenv('PR_DB_DRIVER'))
 
 
-//header( 'Content-type: ' . HEADER_ACCEPT );
+  //header( 'Content-type: ' . HEADER_ACCEPT );
 
   ?>
