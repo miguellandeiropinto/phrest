@@ -12,22 +12,93 @@
   class TestController extends Controller
   {
 
-    public function index ( Request $request, Response $response )
+      /**
+       * @param Request $request
+       * @param Response $response
+       */
+      public function index (Request $request, Response $response )
     {
       $json = Test::all()->encodeJSON()->encodedJSON;
       $response->setData( $json );
+      $response->setCode(200);
       $response->send();
     }
 
-    public function view ( Request $request, Response $response )
+      /**
+       * @param Request $request
+       * @param Response $response
+       */
+      public function view (Request $request, Response $response )
     {
       # code..
-      # var_dump($request->params);
       $query = $request->params['id'];
-      $json = Test::where('id', $query)->orwhere('name', $query)->get()->encodeJSON()->encodedJSON;
-      $response->setData( $json );
+      $item = Test::where('id', $query)->orwhere('name', $query)->first();
+
+      if ( !$item ) {
+        $response->setCode(200);
+        $response->setData(json_encode([]));
+        $response->send();
+        die();
+      }
+
+      $json = $item->encodeJSON()->encodedJSON;
+      $response->setData($json);
+      $response->setCode(200);
       $response->send();
     }
+
+      /**
+       * @param Request $request
+       * @param Response $response
+       */
+      public function create (Request $request, Response $response ) {
+
+      if ( isset ($request->input->post['name']) ) {
+
+        $item = Test::create([
+            'name' => $request->input->post['name']
+        ]);
+
+        $json = $item->encodeJSON()->encodedJSON;
+        $response->setData( $json );
+        $response->setCode( 201 );
+        $response->send();
+
+      } else {
+
+        $response->setData(json_encode(['message' => 'Invalid data', 'code' => 400 ]));
+        $response->setCode( 400, 'Missing data');
+        $response->send();
+
+      }
+
+    }
+
+    public function put ( $request , $response ) {
+        $query = $request->params['id'];
+        $item = Test::where('id', $query)->orwhere('name', $query)->first();
+        if ( !$item ) {
+            $response->setData(json_encode(['error' => true ]));
+            $response->setCode(200);
+            $response->send();
+            die();
+        }
+        $data = $request->input->put;
+        die();
+    }
+
+      public function delete ( $request , $response ) {
+          $query = $request->params['id'];
+          $item = Test::where('id', $query)->orwhere('name', $query)->first();
+          if ( !$item ) {
+              $response->setData(json_encode(['error' => true ]));
+              $response->setCode(200);
+              $response->send();
+              die();
+          }
+          $data = $request->input->delete;
+          die();
+      }
 
   }
 

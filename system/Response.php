@@ -19,6 +19,7 @@
     }
 
     function _setHeaders () {
+      header( $this->code );
       foreach ( $this->headers as $key => $value )
       {
         header($key . ':' . $value);
@@ -27,6 +28,10 @@
 
     function setData ( $data ) {
         $this->data = $data;
+    }
+
+    function setCode ( $code = 200, $reason = "" ) {
+        $this->code = "HTTP/1.1 " . $code . $reason;
     }
 
     function send ()

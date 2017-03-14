@@ -21,7 +21,6 @@
       $this->timestamp = date("M d Y | H:i:s", time());
       $this->IP = $_SERVER['REMOTE_ADDR'];
       $this->headers = getallheaders();
-      $this->stdin = file_get_contents("php://input", "r");
       $this->method = strtoupper( $_SERVER['REQUEST_METHOD'] );
       $this->URIStr = strtok(rtrim(ltrim($_SERVER['REQUEST_URI'],"/"), "/"), '?');
       $this->URIArray = explode('/', $this->URIStr);
@@ -30,6 +29,17 @@
       parse_str( $this->queryStr, $this->query);
       $this->apiKey = isset($this->query['apikey']) ? $this->query['apikey'] : null;
       unset($this->query['apikey']);
+      $this->setInput();
+    }
+
+    function setInput () {
+        $this->input = new \stdClass();
+        $this->input->get = $_GET;
+        $this->input->post = isset($_POST) && count($_POST) > 0 ? $_POST : [];
+        $this->input->put = null;
+        $this->input->delete = null;
+        parse_str(file_get_contents("php://input", "r"), $this->input->put);
+        parse_str(file_get_contents("php://input"), $this->input->delete);
     }
 
     function getEntity () {

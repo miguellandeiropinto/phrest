@@ -65,7 +65,7 @@
     {
       if ( !$uri || !$controller ) return false;
       $route = new Route( $uri,explode('::', $controller));
-      $this->routes['POST'][$uri] =$route;
+      $this->routes['POST'][$uri] = $route;
       return $route;
     }
 
