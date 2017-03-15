@@ -34,25 +34,31 @@
         $this->code = "HTTP/1.1 " . $code . $reason;
     }
 
-    function created ( $json ) {
+    function created ( $json = "" ) {
         $this->setData($json);
         $this->setCode(201);
         return $this;
     }
 
-    function ok ( $json ) {
+    function ok ( $json = "" ) {
         $this->setData($json);
         $this->setCode(200);
         return $this;
     }
 
-    function notFound ( $json ) {
+    function notFound ( $json = "" ) {
       $this->setData($json);
       $this->setCode(404);
       return $this;
     }
 
-    function badRequest ($json) {
+    function unauthorized ( $json = "" ) {
+        $this->setData($json);
+        $this->setCode(401);
+        return $this;
+    }
+
+    function badRequest ( $json = "") {
         $this->setData($json);
         $this->setCode(400);
         return $this;

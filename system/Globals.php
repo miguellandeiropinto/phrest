@@ -33,9 +33,9 @@
   define('DB_CHARSET', getenv('PR_DB_CHARSET'));
   define('DB_COLLATION', getenv('PR_DB_COLLATION'));
   define('DB_PORT', getenv('PR_DB_PORT'));
-  define('DB_DRIVER', getenv('PR_DB_DRIVER'))
+  define('DB_DRIVER', getenv('PR_DB_DRIVER'));
 
-
+  $GLOBALS['ActionsManager'] = new System\ActionsManager();
   //header( 'Content-type: ' . HEADER_ACCEPT );
 
   ?>

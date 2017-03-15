@@ -20,15 +20,18 @@
     }
 
     public function run () {
-
-      if ( $this->route )
-      {
-        $class = CTRLS_NS . '\\' . $this->route->class;
-        $method = $this->route->method;
-        $controller = new $class();
-        $controller->$method($this->request, new Response());
+      global $ActionsManager;
+      if ( $this->route ) {
+        if ( $this->route->needs('auth') ) {
+            $authorized = $ActionsManager->doAction('AuthorizeRoute', (object)['request' => $this->request]);
+            if (!$authorized) {
+                $ActionsManager->doAction('onUnauthorizedRoute', (object) ["request" => $this->request, "response" => new Response()]);
+            }
+            $this->route->execute( $this->request );
+        } else{
+          $this->route->execute( $this->request );
+        }
       }
-
     }
 
   }
