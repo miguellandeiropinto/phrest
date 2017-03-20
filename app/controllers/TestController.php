@@ -2,10 +2,9 @@
 
   namespace MyApp\Controllers;
 
-  use System\Controller;
-  use System\Request;
-  use System\Response;
-  use System\View;
+  use System\Http\Controller;
+  use System\Http\Request;
+  use System\Http\Response;
 
   use MyApp\Models\Test;
 

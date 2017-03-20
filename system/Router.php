@@ -1,11 +1,9 @@
 <?php
   namespace System;
 
-  use System\Route;
+  use System\Http\Request;
+  use System\Http\Route;
 
-  /**
-   *
-   */
   class Router
   {
 

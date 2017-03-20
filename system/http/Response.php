@@ -1,6 +1,8 @@
 <?php
 
-  namespace System;
+  namespace System\Http;
+
+  use System;
 
   class Response
   {
@@ -66,8 +68,10 @@
 
     function send ()
     {
-      View::render( $this );
-      die();
+        $r = $this;
+        System\View::render( $r );
+        die();
+        exit();
     }
 
   }

@@ -2,7 +2,7 @@
 
   namespace MyApp\Models;
 
-  use System\Model;
+  use System\Database\Model;
 
   class Test extends Model
   {

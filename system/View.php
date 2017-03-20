@@ -2,11 +2,11 @@
 
   namespace System;
 
-  use System\Response;
+  use System\Http\Response;
 
   class View
   {
-    public function render ( Response $response )
+    public function render ( $response )
     {
       $response->_setHeaders();
       $data = $response->data;

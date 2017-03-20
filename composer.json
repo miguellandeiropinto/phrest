@@ -12,12 +12,16 @@
       "psr-4": {
         "MyApp\\Controllers\\": "app/controllers",
         "MyApp\\Models\\": "app/models",
+        "System\\Http\\": "system/http",
+        "System\\Actions\\": "system/actions",
         "System\\": "system",
-        "System\\Database\\": "system"
+        "System\\Database\\": "system/db"
       },
       "files": [
         "system/Globals.php",
-        "system/Database.php"
+        "system/actions/Actions.php",
+        "system/db/Database.php",
+        "app/Actions.php"
       ]
     }
 }

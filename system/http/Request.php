@@ -1,8 +1,6 @@
 <?php
 
-  namespace System;
-
-  use System\Parser;
+  namespace System\Http;
 
   class Request {
 

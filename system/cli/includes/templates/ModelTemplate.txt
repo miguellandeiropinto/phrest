@@ -2,7 +2,7 @@
 
   namespace {namespace}\Models;
 
-  use System\Model;
+  use System\Database\Model;
 
   class {class_name} extends Model
   {

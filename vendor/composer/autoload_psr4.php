@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'System\\Database\\' => array($baseDir . '/system'),
+    'System\\Http\\' => array($baseDir . '/system/http'),
+    'System\\Database\\' => array($baseDir . '/system/db'),
+    'System\\Actions\\' => array($baseDir . '/system/actions'),
     'System\\' => array($baseDir . '/system'),
     'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),

@@ -1,8 +1,7 @@
 <?php
 
-  namespace System;
+  namespace System\Http;
 
-  use System\View;
 
   class Controller
   {
@@ -11,6 +10,10 @@
     public function __construct ()
     {
 
+
+    }
+
+    public function __call ( $method, $args ) {
 
     }
 

@@ -1,7 +1,8 @@
 <?php
 
   namespace System;
-  use MyApp\Controllers;
+
+  use System\Http\Request;
 
   class App {
 

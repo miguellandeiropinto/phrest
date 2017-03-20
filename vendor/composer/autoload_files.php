@@ -14,5 +14,7 @@ return array(
     '3569eecfeed3bcf0bad3c998a494ecb8' => $vendorDir . '/sabre/xml/lib/Deserializer/functions.php',
     '93aa591bc4ca510c520999e34229ee79' => $vendorDir . '/sabre/xml/lib/Serializer/functions.php',
     'd1489783bac2f3f5026a9992f3490c8a' => $baseDir . '/system/Globals.php',
-    'cb6143847b00d64367f4ce5b4bc50a85' => $baseDir . '/system/Database.php',
+    '812c3a07145db5db13bc55e82acdb1d7' => $baseDir . '/system/actions/Actions.php',
+    'd59e3b35793b5adedd382475d3fef9bc' => $baseDir . '/system/db/Database.php',
+    'c495b084465716c053e5aa20f66d0131' => $baseDir . '/app/Actions.php',
 );

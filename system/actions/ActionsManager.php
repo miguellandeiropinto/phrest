@@ -6,7 +6,7 @@
  * Time: 22:50
  */
 
-namespace System;
+namespace System\Actions;
 
 
 class ActionsManager

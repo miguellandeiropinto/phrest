@@ -3,6 +3,7 @@
   use Symfony\Component\Yaml\Yaml;
   use Symfony\Component\Yaml\Exception\ParseException;
 
+
   $GLOBALS['configuration'] = null;
 
   global $configuration;
@@ -35,7 +36,7 @@
   define('DB_PORT', getenv('PR_DB_PORT'));
   define('DB_DRIVER', getenv('PR_DB_DRIVER'));
 
-  $GLOBALS['ActionsManager'] = new System\ActionsManager();
+  $GLOBALS['ActionsManager'] = new \System\Actions\ActionsManager();
   //header( 'Content-type: ' . HEADER_ACCEPT );
 
   ?>
