@@ -1,21 +1,23 @@
 <?php
 
-  namespace System\Http;
+namespace System\Http;
 
 
-  class Controller
-  {
+class Controller
+{
 
 
-    public function __construct ()
+    public function __construct()
     {
 
 
     }
 
-    public function __call ( $method, $args ) {
+    public function __call($method, $args)
+    {
 
     }
 
-  }
+}
+
 ?>

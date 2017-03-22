@@ -71,8 +71,8 @@ final class Mbstring
     private static $language = 'neutral';
     private static $internalEncoding = 'UTF-8';
     private static $caseFold = array(
-        array('µ','ſ',"\xCD\x85",'ς',"\xCF\x90","\xCF\x91","\xCF\x95","\xCF\x96","\xCF\xB0","\xCF\xB1","\xCF\xB5","\xE1\xBA\x9B","\xE1\xBE\xBE"),
-        array('μ','s','ι',       'σ','β',       'θ',       'φ',       'π',       'κ',       'ρ',       'ε',       "\xE1\xB9\xA1",'ι'),
+        array('µ', 'ſ', "\xCD\x85", 'ς', "\xCF\x90", "\xCF\x91", "\xCF\x95", "\xCF\x96", "\xCF\xB0", "\xCF\xB1", "\xCF\xB5", "\xE1\xBA\x9B", "\xE1\xBE\xBE"),
+        array('μ', 's', 'ι', 'σ', 'β', 'θ', 'φ', 'π', 'κ', 'ρ', 'ε', "\xE1\xB9\xA1", 'ι'),
     );
 
     public static function mb_convert_encoding($s, $toEncoding, $fromEncoding = null)
@@ -110,7 +110,7 @@ final class Mbstring
             $fromEncoding = 'UTF-8';
         }
 
-        return iconv($fromEncoding, $toEncoding.'//IGNORE', $s);
+        return iconv($fromEncoding, $toEncoding . '//IGNORE', $s);
     }
 
     public static function mb_convert_variables($toEncoding, $fromEncoding, &$a = null, &$b = null, &$c = null, &$d = null, &$e = null, &$f = null)
@@ -195,7 +195,7 @@ final class Mbstring
                     } else {
                         $s = substr_replace($s, $uchr, $i - $ulen, $ulen);
                         $len += $nlen - $ulen;
-                        $i   += $nlen - $ulen;
+                        $i += $nlen - $ulen;
                     }
                 }
             }
@@ -205,7 +205,7 @@ final class Mbstring
             return $s;
         }
 
-        return iconv('UTF-8', $encoding.'//IGNORE', $s);
+        return iconv('UTF-8', $encoding . '//IGNORE', $s);
     }
 
     public static function mb_internal_encoding($encoding = null)
@@ -350,7 +350,7 @@ final class Mbstring
         $encoding = self::getEncoding($encoding);
 
         if ('' === $needle .= '') {
-            trigger_error(__METHOD__.': Empty delimiter', E_USER_WARNING);
+            trigger_error(__METHOD__ . ': Empty delimiter', E_USER_WARNING);
 
             return false;
         }
@@ -362,9 +362,9 @@ final class Mbstring
     {
         $encoding = self::getEncoding($encoding);
 
-        if ($offset != (int) $offset) {
+        if ($offset != (int)$offset) {
             $offset = 0;
-        } elseif ($offset = (int) $offset) {
+        } elseif ($offset = (int)$offset) {
             if ($offset < 0) {
                 $haystack = self::mb_substr($haystack, 0, $offset, $encoding);
                 $offset = 0;
@@ -417,7 +417,7 @@ final class Mbstring
             }
         }
 
-        return iconv_substr($s, $start, $length, $encoding).'';
+        return iconv_substr($s, $start, $length, $encoding) . '';
     }
 
     public static function mb_stripos($haystack, $needle, $offset = 0, $encoding = null)
@@ -540,11 +540,11 @@ final class Mbstring
         if (0x80 > $code %= 0x200000) {
             $s = chr($code);
         } elseif (0x800 > $code) {
-            $s = chr(0xC0 | $code >> 6).chr(0x80 | $code & 0x3F);
+            $s = chr(0xC0 | $code >> 6) . chr(0x80 | $code & 0x3F);
         } elseif (0x10000 > $code) {
-            $s = chr(0xE0 | $code >> 12).chr(0x80 | $code >> 6 & 0x3F).chr(0x80 | $code & 0x3F);
+            $s = chr(0xE0 | $code >> 12) . chr(0x80 | $code >> 6 & 0x3F) . chr(0x80 | $code & 0x3F);
         } else {
-            $s = chr(0xF0 | $code >> 18).chr(0x80 | $code >> 12 & 0x3F).chr(0x80 | $code >> 6 & 0x3F).chr(0x80 | $code & 0x3F);
+            $s = chr(0xF0 | $code >> 18) . chr(0x80 | $code >> 12 & 0x3F) . chr(0x80 | $code >> 6 & 0x3F) . chr(0x80 | $code & 0x3F);
         }
 
         if ('UTF-8' !== $encoding = self::getEncoding($encoding)) {
@@ -605,7 +605,7 @@ final class Mbstring
                 $c = (($m[$i++] - 0xC0) << 6) + $m[$i++] - 0x80;
             }
 
-            $entities .= '&#'.$c.';';
+            $entities .= '&#' . $c . ';';
         }
 
         return $entities;
@@ -623,7 +623,7 @@ final class Mbstring
 
     private static function getData($file)
     {
-        if (file_exists($file = __DIR__.'/Resources/unidata/'.$file.'.php')) {
+        if (file_exists($file = __DIR__ . '/Resources/unidata/' . $file . '.php')) {
             return require $file;
         }
 

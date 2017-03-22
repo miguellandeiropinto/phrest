@@ -13,7 +13,7 @@ interface TokenInterface
      * - They must not be modified if this route does not match (i.e. this method
      *   returns false).
      *
-     * @param array $input  Remaining input args from the user input (tokens will pop from this vector)
+     * @param array $input Remaining input args from the user input (tokens will pop from this vector)
      * @param array $output Output args that will be collected (tokens may push to this map)
      * @return boolean Returns whether the $input can be matched against this route
      */

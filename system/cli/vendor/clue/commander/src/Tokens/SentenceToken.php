@@ -16,10 +16,10 @@ class SentenceToken implements TokenInterface
             } elseif ($token instanceof self) {
                 // merge any tokens from sub-sentences
                 foreach ($token->tokens as $token) {
-                    $this->tokens []= $token;
+                    $this->tokens [] = $token;
                 }
             } else {
-                $this->tokens []= $token;
+                $this->tokens [] = $token;
             }
         }
 

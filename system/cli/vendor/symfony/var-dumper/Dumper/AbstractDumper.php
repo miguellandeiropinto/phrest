@@ -36,15 +36,15 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     private $charset;
 
     /**
-     * @param callable|resource|string|null $output  A line dumper callable, an opened stream or an output path, defaults to static::$defaultOutput
-     * @param string                        $charset The default character encoding to use for non-UTF8 strings
-     * @param int                           $flags   A bit field of static::DUMP_* constants to fine tune dumps representation
+     * @param callable|resource|string|null $output A line dumper callable, an opened stream or an output path, defaults to static::$defaultOutput
+     * @param string $charset The default character encoding to use for non-UTF8 strings
+     * @param int $flags A bit field of static::DUMP_* constants to fine tune dumps representation
      */
     public function __construct($output = null, $charset = null, $flags = 0)
     {
-        $this->flags = (int) $flags;
+        $this->flags = (int)$flags;
         $this->setCharset($charset ?: ini_get('php.output_encoding') ?: ini_get('default_charset') ?: 'UTF-8');
-        $this->decimalPoint = (string) 0.5;
+        $this->decimalPoint = (string)0.5;
         $this->decimalPoint = $this->decimalPoint[1];
         $this->setOutput($output ?: static::$defaultOutput);
         if (!$output && is_string(static::$defaultOutput)) {
@@ -114,7 +114,7 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     /**
      * Dumps a Data object.
      *
-     * @param Data                               $data   A Data object
+     * @param Data $data A Data object
      * @param callable|resource|string|true|null $output A line dumper callable, an opened stream, an output path or true to return the dump
      *
      * @return string|null The dump as string when $output is true
@@ -158,14 +158,14 @@ abstract class AbstractDumper implements DataDumperInterface, DumperInterface
     /**
      * Generic line dumper callback.
      *
-     * @param string $line      The line to write
-     * @param int    $depth     The recursive depth in the dumped structure
+     * @param string $line The line to write
+     * @param int $depth The recursive depth in the dumped structure
      * @param string $indentPad The line indent pad
      */
     protected function echoLine($line, $depth, $indentPad)
     {
         if (-1 !== $depth) {
-            fwrite($this->outputStream, str_repeat($indentPad, $depth).$line."\n");
+            fwrite($this->outputStream, str_repeat($indentPad, $depth) . $line . "\n");
         }
     }
 

@@ -1,11 +1,11 @@
 <?php
 
-  namespace System\Database;
+namespace System\Database;
 
-  use Illuminate\Database\Capsule\Manager as Capsule;
+use Illuminate\Database\Capsule\Manager as Capsule;
 
-  $db = new Capsule;
-  $db->addConnection([
+$db = new Capsule;
+$db->addConnection([
     'driver' => DB_DRIVER,
     'host' => DB_HOST,
     'port' => DB_PORT,
@@ -14,9 +14,9 @@
     'password' => is_string(DB_PASSWORD) ? DB_PASSWORD : "",
     'charset' => DB_CHARSET,
     'collation' => DB_COLLATION
-  ]);
+]);
 
-  $db->setAsGlobal();
-  $db->bootEloquent();
+$db->setAsGlobal();
+$db->bootEloquent();
 
 ?>

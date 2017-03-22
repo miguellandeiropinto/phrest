@@ -15,7 +15,8 @@ class RouterTest extends PHPUnit_Framework_TestCase
     {
         $router = new Router();
 
-        $route = $router->add('hello', function () { });
+        $route = $router->add('hello', function () {
+        });
 
         $this->assertInstanceOf('Clue\Commander\Route', $route);
         $this->assertEquals(array($route), $router->getRoutes());
@@ -444,7 +445,7 @@ class RouterTest extends PHPUnit_Framework_TestCase
      * @dataProvider provideNonMatchingRoutes
      * @expectedException Clue\Commander\NoRouteFoundException
      * @param string $route
-     * @param array  $args
+     * @param array $args
      */
     public function testHandleRouteDoesNotMatch($route, $args)
     {
@@ -458,7 +459,8 @@ class RouterTest extends PHPUnit_Framework_TestCase
     {
         $router = new Router();
 
-        $route = $router->add('hello', function () { });
+        $route = $router->add('hello', function () {
+        });
 
         $router->remove($route);
 
@@ -471,7 +473,8 @@ class RouterTest extends PHPUnit_Framework_TestCase
     public function testCanNotRemoveRouteWhichHasNotBeenAdded()
     {
         $router = new Router();
-        $route = $router->add('hello', function () { });
+        $route = $router->add('hello', function () {
+        });
 
         $router2 = new Router();
         $router2->remove($route);

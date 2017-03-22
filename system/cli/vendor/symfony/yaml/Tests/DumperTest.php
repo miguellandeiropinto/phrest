@@ -40,7 +40,7 @@ class DumperTest extends \PHPUnit_Framework_TestCase
     {
         $this->parser = new Parser();
         $this->dumper = new Dumper();
-        $this->path = __DIR__.'/Fixtures';
+        $this->path = __DIR__ . '/Fixtures';
     }
 
     protected function tearDown()
@@ -107,9 +107,9 @@ EOF;
 
     public function testSpecifications()
     {
-        $files = $this->parser->parse(file_get_contents($this->path.'/index.yml'));
+        $files = $this->parser->parse(file_get_contents($this->path . '/index.yml'));
         foreach ($files as $file) {
-            $yamls = file_get_contents($this->path.'/'.$file.'.yml');
+            $yamls = file_get_contents($this->path . '/' . $file . '.yml');
 
             // split YAMLs documents
             foreach (preg_split('/^---( %YAML\:1\.0)?/m', $yamls) as $yaml) {
@@ -123,7 +123,7 @@ EOF;
                 } elseif (isset($test['todo']) && $test['todo']) {
                     // TODO
                 } else {
-                    eval('$expected = '.trim($test['php']).';');
+                    eval('$expected = ' . trim($test['php']) . ';');
                     $this->assertSame($expected, $this->parser->parse($this->dumper->dump($expected, 10)), $test['test']);
                 }
             }
@@ -279,8 +279,8 @@ EOF;
 
     public function testBinaryDataIsDumpedBase64Encoded()
     {
-        $binaryData = file_get_contents(__DIR__.'/Fixtures/arrow.gif');
-        $expected = '{ data: !!binary '.base64_encode($binaryData).' }';
+        $binaryData = file_get_contents(__DIR__ . '/Fixtures/arrow.gif');
+        $expected = '{ data: !!binary ' . base64_encode($binaryData) . ' }';
 
         $this->assertSame($expected, $this->dumper->dump(array('data' => $binaryData)));
     }
@@ -342,7 +342,7 @@ EOF;
             ),
         );
 
-        $this->assertSame(file_get_contents(__DIR__.'/Fixtures/multiple_lines_as_literal_block.yml'), $this->dumper->dump($data, 2, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
+        $this->assertSame(file_get_contents(__DIR__ . '/Fixtures/multiple_lines_as_literal_block.yml'), $this->dumper->dump($data, 2, 0, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK));
     }
 
     /**

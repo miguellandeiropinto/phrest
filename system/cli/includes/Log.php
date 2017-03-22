@@ -15,12 +15,14 @@ define('WARN_MSG', '[!]');
 
 class Log
 {
-    function println ( $message, $type = INFO_MSG ) {
-        echo $type . ' ' .  $message ."\n";
+    function println($message, $type = INFO_MSG)
+    {
+        echo $type . ' ' . $message . "\n";
     }
 
-    function printlnd ( $message, $type = INFO_MSG ) {
-        Log::println( $message, $type );
+    function printlnd($message, $type = INFO_MSG)
+    {
+        Log::println($message, $type);
         die();
         exit();
     }

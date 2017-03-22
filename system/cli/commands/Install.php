@@ -7,6 +7,7 @@
  */
 
 namespace PhRestClient\Commands;
+
 use PhRestClient\Commands\Config;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Yaml\Exception\ParseException;
@@ -15,7 +16,7 @@ use PhRestClient\Includes\Log;
 
 class Install
 {
-    function start ( $args = array() )
+    function start($args = array())
     {
         $yml = [
             'db' => [
@@ -33,21 +34,21 @@ class Install
                 'controllers_namespace' => '\Controllers',
                 'models_namespace' => '\Models',
                 'controllers_path' => '/app/controllers/',
-                'models_path' => '/app/models'
+                'models_path' => '/app/models',
+                'namespaceXML' => 'http://www.example.org/'
             ]
         ];
 
         $config = null;
 
-        if ( file_exists(__DIR__ .  '/../../../app.yml') )
-        {
+        if (file_exists(__DIR__ . '/../../../app.yml')) {
             try {
-                $config = Yaml::parse(file_get_contents(__DIR__ .  '/../../../app.yml'));
+                $config = Yaml::parse(file_get_contents(__DIR__ . '/../../../app.yml'));
             } catch (ParseException $e) {
                 Log::printlnd("Unable to parse the YAML string: " . $e->getMessage());
             }
 
-            $config = array_merge( $yml, $config );
+            $config = array_merge($yml, $config);
 
             Config::setEnv('DB_HOST', $config['db']['host']);
             Config::setEnv('DB_NAME', $config['db']['db']);
@@ -57,6 +58,7 @@ class Install
             Config::setEnv('DB_COLLATION', $config['db']['collation']);
             Config::setEnv('DB_PORT', $config['db']['port']);
             Config::setEnv('DB_DRIVER', $config['db']['driver']);
+            Config::setEnv('XML_NAMESPACE', $config['app']['namespaceXML']);
 
 
             Log::println('.htaccess file changed!');
@@ -68,7 +70,7 @@ class Install
 
     }
 
-    function init ()
+    function init()
     {
         $yml = [
             'db' => [
@@ -86,14 +88,15 @@ class Install
                 'controllers_namespace' => '\Controllers',
                 'models_namespace' => '\Models',
                 'controllers_path' => '/app/controllers/',
-                'models_path' => '/app/models'
+                'models_path' => '/app/models',
+                'namespaceXML' => 'http://www.example.org/'
             ]
         ];
 
-        if ( !file_exists(__DIR__ .  '/../../../app.yml')) {
+        if (!file_exists(__DIR__ . '/../../../app.yml')) {
             try {
-                file_put_contents( __DIR__ . '/../../../app.yml', Yaml::dump( $yml ));
-            } catch ( Exception $e) {
+                file_put_contents(__DIR__ . '/../../../app.yml', Yaml::dump($yml));
+            } catch (Exception $e) {
                 echo $e->getMessage();
                 die();
             }

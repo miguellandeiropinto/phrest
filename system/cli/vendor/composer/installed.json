@@ -1,237 +1,237 @@
 [
-    {
-        "name": "clue/commander",
-        "version": "v1.2.1",
-        "version_normalized": "1.2.1.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/clue/php-commander.git",
-            "reference": "fba4e315360b87710efd15ba39ab6313ba9f0838"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/clue/php-commander/zipball/fba4e315360b87710efd15ba39ab6313ba9f0838",
-            "reference": "fba4e315360b87710efd15ba39ab6313ba9f0838",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3"
-        },
-        "require-dev": {
-            "clue/arguments": "^1.0"
-        },
-        "time": "2016-11-14 18:22:36",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Clue\\Commander\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Christian Lück",
-                "email": "christian@lueck.tv"
-            }
-        ],
-        "description": "Finally a sane way to register available commands and arguments and match your command line in PHP.",
-        "homepage": "https://github.com/clue/php-commander",
-        "keywords": [
-            "args",
-            "arguments",
-            "argv",
-            "command",
-            "command line",
-            "getopt",
-            "parse",
-            "router"
-        ]
+  {
+    "name": "clue/commander",
+    "version": "v1.2.1",
+    "version_normalized": "1.2.1.0",
+    "source": {
+      "type": "git",
+      "url": "https://github.com/clue/php-commander.git",
+      "reference": "fba4e315360b87710efd15ba39ab6313ba9f0838"
     },
-    {
-        "name": "symfony/polyfill-mbstring",
-        "version": "v1.3.0",
-        "version_normalized": "1.3.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/polyfill-mbstring.git",
-            "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/e79d363049d1c2128f133a2667e4f4190904f7f4",
-            "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.3"
-        },
-        "suggest": {
-            "ext-mbstring": "For best performance"
-        },
-        "time": "2016-11-14 01:06:16",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.3-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Polyfill\\Mbstring\\": ""
-            },
-            "files": [
-                "bootstrap.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Nicolas Grekas",
-                "email": "p@tchwork.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony polyfill for the Mbstring extension",
-        "homepage": "https://symfony.com",
-        "keywords": [
-            "compatibility",
-            "mbstring",
-            "polyfill",
-            "portable",
-            "shim"
-        ]
+    "dist": {
+      "type": "zip",
+      "url": "https://api.github.com/repos/clue/php-commander/zipball/fba4e315360b87710efd15ba39ab6313ba9f0838",
+      "reference": "fba4e315360b87710efd15ba39ab6313ba9f0838",
+      "shasum": ""
     },
-    {
-        "name": "symfony/var-dumper",
-        "version": "v3.2.4",
-        "version_normalized": "3.2.4.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/var-dumper.git",
-            "reference": "cb50260b674ee1c2d4ab49f2395a42e0b4681e20"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/var-dumper/zipball/cb50260b674ee1c2d4ab49f2395a42e0b4681e20",
-            "reference": "cb50260b674ee1c2d4ab49f2395a42e0b4681e20",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.9",
-            "symfony/polyfill-mbstring": "~1.0"
-        },
-        "require-dev": {
-            "twig/twig": "~1.20|~2.0"
-        },
-        "suggest": {
-            "ext-symfony_debug": ""
-        },
-        "time": "2017-02-16 22:46:52",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "Resources/functions/dump.php"
-            ],
-            "psr-4": {
-                "Symfony\\Component\\VarDumper\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Nicolas Grekas",
-                "email": "p@tchwork.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony mechanism for exploring and dumping PHP variables",
-        "homepage": "https://symfony.com",
-        "keywords": [
-            "debug",
-            "dump"
-        ]
+    "require": {
+      "php": ">=5.3"
     },
-    {
-        "name": "symfony/yaml",
-        "version": "v3.2.4",
-        "version_normalized": "3.2.4.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/yaml.git",
-            "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/yaml/zipball/9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
-            "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.9"
-        },
-        "require-dev": {
-            "symfony/console": "~2.8|~3.0"
-        },
-        "suggest": {
-            "symfony/console": "For validating YAML files using the lint command"
-        },
-        "time": "2017-02-16 22:46:52",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Component\\Yaml\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
-            },
-            {
-                "name": "Symfony Community",
-                "homepage": "https://symfony.com/contributors"
-            }
-        ],
-        "description": "Symfony Yaml Component",
-        "homepage": "https://symfony.com"
-    }
+    "require-dev": {
+      "clue/arguments": "^1.0"
+    },
+    "time": "2016-11-14 18:22:36",
+    "type": "library",
+    "installation-source": "dist",
+    "autoload": {
+      "psr-4": {
+        "Clue\\Commander\\": "src/"
+      }
+    },
+    "notification-url": "https://packagist.org/downloads/",
+    "license": [
+      "MIT"
+    ],
+    "authors": [
+      {
+        "name": "Christian Lück",
+        "email": "christian@lueck.tv"
+      }
+    ],
+    "description": "Finally a sane way to register available commands and arguments and match your command line in PHP.",
+    "homepage": "https://github.com/clue/php-commander",
+    "keywords": [
+      "args",
+      "arguments",
+      "argv",
+      "command",
+      "command line",
+      "getopt",
+      "parse",
+      "router"
+    ]
+  },
+  {
+    "name": "symfony/polyfill-mbstring",
+    "version": "v1.3.0",
+    "version_normalized": "1.3.0.0",
+    "source": {
+      "type": "git",
+      "url": "https://github.com/symfony/polyfill-mbstring.git",
+      "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4"
+    },
+    "dist": {
+      "type": "zip",
+      "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/e79d363049d1c2128f133a2667e4f4190904f7f4",
+      "reference": "e79d363049d1c2128f133a2667e4f4190904f7f4",
+      "shasum": ""
+    },
+    "require": {
+      "php": ">=5.3.3"
+    },
+    "suggest": {
+      "ext-mbstring": "For best performance"
+    },
+    "time": "2016-11-14 01:06:16",
+    "type": "library",
+    "extra": {
+      "branch-alias": {
+        "dev-master": "1.3-dev"
+      }
+    },
+    "installation-source": "dist",
+    "autoload": {
+      "psr-4": {
+        "Symfony\\Polyfill\\Mbstring\\": ""
+      },
+      "files": [
+        "bootstrap.php"
+      ]
+    },
+    "notification-url": "https://packagist.org/downloads/",
+    "license": [
+      "MIT"
+    ],
+    "authors": [
+      {
+        "name": "Nicolas Grekas",
+        "email": "p@tchwork.com"
+      },
+      {
+        "name": "Symfony Community",
+        "homepage": "https://symfony.com/contributors"
+      }
+    ],
+    "description": "Symfony polyfill for the Mbstring extension",
+    "homepage": "https://symfony.com",
+    "keywords": [
+      "compatibility",
+      "mbstring",
+      "polyfill",
+      "portable",
+      "shim"
+    ]
+  },
+  {
+    "name": "symfony/var-dumper",
+    "version": "v3.2.4",
+    "version_normalized": "3.2.4.0",
+    "source": {
+      "type": "git",
+      "url": "https://github.com/symfony/var-dumper.git",
+      "reference": "cb50260b674ee1c2d4ab49f2395a42e0b4681e20"
+    },
+    "dist": {
+      "type": "zip",
+      "url": "https://api.github.com/repos/symfony/var-dumper/zipball/cb50260b674ee1c2d4ab49f2395a42e0b4681e20",
+      "reference": "cb50260b674ee1c2d4ab49f2395a42e0b4681e20",
+      "shasum": ""
+    },
+    "require": {
+      "php": ">=5.5.9",
+      "symfony/polyfill-mbstring": "~1.0"
+    },
+    "require-dev": {
+      "twig/twig": "~1.20|~2.0"
+    },
+    "suggest": {
+      "ext-symfony_debug": ""
+    },
+    "time": "2017-02-16 22:46:52",
+    "type": "library",
+    "extra": {
+      "branch-alias": {
+        "dev-master": "3.2-dev"
+      }
+    },
+    "installation-source": "dist",
+    "autoload": {
+      "files": [
+        "Resources/functions/dump.php"
+      ],
+      "psr-4": {
+        "Symfony\\Component\\VarDumper\\": ""
+      },
+      "exclude-from-classmap": [
+        "/Tests/"
+      ]
+    },
+    "notification-url": "https://packagist.org/downloads/",
+    "license": [
+      "MIT"
+    ],
+    "authors": [
+      {
+        "name": "Nicolas Grekas",
+        "email": "p@tchwork.com"
+      },
+      {
+        "name": "Symfony Community",
+        "homepage": "https://symfony.com/contributors"
+      }
+    ],
+    "description": "Symfony mechanism for exploring and dumping PHP variables",
+    "homepage": "https://symfony.com",
+    "keywords": [
+      "debug",
+      "dump"
+    ]
+  },
+  {
+    "name": "symfony/yaml",
+    "version": "v3.2.4",
+    "version_normalized": "3.2.4.0",
+    "source": {
+      "type": "git",
+      "url": "https://github.com/symfony/yaml.git",
+      "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8"
+    },
+    "dist": {
+      "type": "zip",
+      "url": "https://api.github.com/repos/symfony/yaml/zipball/9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
+      "reference": "9724c684646fcb5387d579b4bfaa63ee0b0c64c8",
+      "shasum": ""
+    },
+    "require": {
+      "php": ">=5.5.9"
+    },
+    "require-dev": {
+      "symfony/console": "~2.8|~3.0"
+    },
+    "suggest": {
+      "symfony/console": "For validating YAML files using the lint command"
+    },
+    "time": "2017-02-16 22:46:52",
+    "type": "library",
+    "extra": {
+      "branch-alias": {
+        "dev-master": "3.2-dev"
+      }
+    },
+    "installation-source": "dist",
+    "autoload": {
+      "psr-4": {
+        "Symfony\\Component\\Yaml\\": ""
+      },
+      "exclude-from-classmap": [
+        "/Tests/"
+      ]
+    },
+    "notification-url": "https://packagist.org/downloads/",
+    "license": [
+      "MIT"
+    ],
+    "authors": [
+      {
+        "name": "Fabien Potencier",
+        "email": "fabien@symfony.com"
+      },
+      {
+        "name": "Symfony Community",
+        "homepage": "https://symfony.com/contributors"
+      }
+    ],
+    "description": "Symfony Yaml Component",
+    "homepage": "https://symfony.com"
+  }
 ]

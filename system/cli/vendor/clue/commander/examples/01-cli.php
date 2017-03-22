@@ -15,7 +15,7 @@ $router->add('echo <words>...', function (array $args) {
 $router->add('[--help | -h]', function () use ($router) {
     echo 'Usage:' . PHP_EOL;
     foreach ($router->getRoutes() as $route) {
-        echo '  ' .$route . PHP_EOL;
+        echo '  ' . $route . PHP_EOL;
     }
 });
 

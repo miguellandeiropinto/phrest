@@ -34,7 +34,7 @@ class EllipseToken implements TokenInterface
 
                 // reset output to original state and try next match
                 $output = $soutput;
-            } while($this->token->matches($input, $output));
+            } while ($this->token->matches($input, $output));
 
             // output is new output variables plus original variables
             $output = $all + $soutput;

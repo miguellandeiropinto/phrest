@@ -55,7 +55,7 @@ class ExceptionCaster
 
     public static function castErrorException(\ErrorException $e, array $a, Stub $stub, $isNested)
     {
-        if (isset($a[$s = Caster::PREFIX_PROTECTED.'severity'], self::$errorTypes[$a[$s]])) {
+        if (isset($a[$s = Caster::PREFIX_PROTECTED . 'severity'], self::$errorTypes[$a[$s]])) {
             $a[$s] = new ConstStub(self::$errorTypes[$a[$s]], $a[$s]);
         }
 
@@ -67,13 +67,13 @@ class ExceptionCaster
         $prefix = Caster::PREFIX_PROTECTED;
         $xPrefix = "\0Exception\0";
 
-        if (isset($a[$xPrefix.'previous'], $a[$xPrefix.'trace'])) {
-            $b = (array) $a[$xPrefix.'previous'];
-            self::traceUnshift($b[$xPrefix.'trace'], get_class($a[$xPrefix.'previous']), $b[$prefix.'file'], $b[$prefix.'line']);
-            $a[$xPrefix.'trace'] = new TraceStub($b[$xPrefix.'trace'], false, 0, -1 - count($a[$xPrefix.'trace']->value));
+        if (isset($a[$xPrefix . 'previous'], $a[$xPrefix . 'trace'])) {
+            $b = (array)$a[$xPrefix . 'previous'];
+            self::traceUnshift($b[$xPrefix . 'trace'], get_class($a[$xPrefix . 'previous']), $b[$prefix . 'file'], $b[$prefix . 'line']);
+            $a[$xPrefix . 'trace'] = new TraceStub($b[$xPrefix . 'trace'], false, 0, -1 - count($a[$xPrefix . 'trace']->value));
         }
 
-        unset($a[$xPrefix.'previous'], $a[$prefix.'code'], $a[$prefix.'file'], $a[$prefix.'line']);
+        unset($a[$xPrefix . 'previous'], $a[$prefix . 'code'], $a[$prefix . 'file'], $a[$prefix . 'line']);
 
         return $a;
     }
@@ -96,14 +96,14 @@ class ExceptionCaster
         if (!isset($trace->value[$i])) {
             return array();
         }
-        $lastCall = isset($frames[$i]['function']) ? (isset($frames[$i]['class']) ? $frames[0]['class'].$frames[$i]['type'] : '').$frames[$i]['function'].'()' : '';
+        $lastCall = isset($frames[$i]['function']) ? (isset($frames[$i]['class']) ? $frames[0]['class'] . $frames[$i]['type'] : '') . $frames[$i]['function'] . '()' : '';
         $frames[] = array('function' => '');
 
         for ($j += $trace->numberingOffset - $i++; isset($frames[$i]); ++$i, --$j) {
             $f = $frames[$i];
-            $call = isset($f['function']) ? (isset($f['class']) ? $f['class'].$f['type'] : '').$f['function'].'()' : '???';
+            $call = isset($f['function']) ? (isset($f['class']) ? $f['class'] . $f['type'] : '') . $f['function'] . '()' : '???';
 
-            $label = substr_replace($prefix, "title=Stack level $j.", 2, 0).$lastCall;
+            $label = substr_replace($prefix, "title=Stack level $j.", 2, 0) . $lastCall;
             $frame = new FrameStub(
                 array(
                     'object' => isset($f['object']) ? $f['object'] : null,
@@ -115,8 +115,8 @@ class ExceptionCaster
                 true
             );
             $f = self::castFrameStub($frame, array(), $frame, true);
-            if (isset($f[$prefix.'src'])) {
-                foreach ($f[$prefix.'src']->value as $label => $frame) {
+            if (isset($f[$prefix . 'src'])) {
+                foreach ($f[$prefix . 'src']->value as $label => $frame) {
                     $label = substr_replace($label, "title=Stack level $j.&", 2, 0);
                 }
                 $f = $frames[$i - 1];
@@ -150,13 +150,13 @@ class ExceptionCaster
             $cacheKey = implode('-', $cacheKey);
 
             if (isset(self::$framesCache[$cacheKey])) {
-                $a[$prefix.'src'] = self::$framesCache[$cacheKey];
+                $a[$prefix . 'src'] = self::$framesCache[$cacheKey];
             } else {
                 if (preg_match('/\((\d+)\)(?:\([\da-f]{32}\))? : (?:eval\(\)\'d code|runtime-created function)$/', $f['file'], $match)) {
                     $f['file'] = substr($f['file'], 0, -strlen($match[0]));
-                    $f['line'] = (int) $match[1];
+                    $f['line'] = (int)$match[1];
                 }
-                $caller = isset($f['function']) ? sprintf('in %s() on line %d', (isset($f['class']) ? $f['class'].$f['type'] : '').$f['function'], $f['line']) : null;
+                $caller = isset($f['function']) ? sprintf('in %s() on line %d', (isset($f['class']) ? $f['class'] . $f['type'] : '') . $f['function'], $f['line']) : null;
                 $src = $f['line'];
                 $srcKey = $f['file'];
                 $ellipsis = explode(DIRECTORY_SEPARATOR, $srcKey);
@@ -175,26 +175,26 @@ class ExceptionCaster
                             }
                             if ($templateSrc) {
                                 $src = self::extractSource($templateSrc, $templateInfo[$f['line']], self::$srcContext, $caller, 'twig', $templatePath);
-                                $srcKey = ($templatePath ?: $template->getTemplateName()).':'.$templateInfo[$f['line']];
+                                $srcKey = ($templatePath ?: $template->getTemplateName()) . ':' . $templateInfo[$f['line']];
                             }
                         }
                     }
                     if ($srcKey == $f['file']) {
                         $src = self::extractSource(file_get_contents($f['file']), $f['line'], self::$srcContext, $caller, 'php', $f['file']);
-                        $srcKey .= ':'.$f['line'];
+                        $srcKey .= ':' . $f['line'];
                         if ($ellipsis) {
                             $ellipsis += 1 + strlen($f['line']);
                         }
                     }
                 }
-                $srcAttr = $ellipsis ? 'ellipsis='.$ellipsis : '';
-                self::$framesCache[$cacheKey] = $a[$prefix.'src'] = new EnumStub(array("\0~$srcAttr\0$srcKey" => $src));
+                $srcAttr = $ellipsis ? 'ellipsis=' . $ellipsis : '';
+                self::$framesCache[$cacheKey] = $a[$prefix . 'src'] = new EnumStub(array("\0~$srcAttr\0$srcKey" => $src));
             }
         }
 
-        unset($a[$prefix.'args'], $a[$prefix.'line'], $a[$prefix.'file']);
+        unset($a[$prefix . 'args'], $a[$prefix . 'line'], $a[$prefix . 'file']);
         if ($frame->inTraceStub) {
-            unset($a[$prefix.'class'], $a[$prefix.'type'], $a[$prefix.'function']);
+            unset($a[$prefix . 'class'], $a[$prefix . 'type'], $a[$prefix . 'function']);
         }
         foreach ($a as $k => $v) {
             if (!$v) {
@@ -202,7 +202,7 @@ class ExceptionCaster
             }
         }
         if ($frame->keepArgs && !empty($f['args'])) {
-            $a[$prefix.'arguments'] = new ArgsStub($f['args'], $f['function'], $f['class']);
+            $a[$prefix . 'arguments'] = new ArgsStub($f['args'], $f['function'], $f['class']);
         }
 
         return $a;
@@ -210,23 +210,23 @@ class ExceptionCaster
 
     private static function filterExceptionArray($xClass, array $a, $xPrefix, $filter)
     {
-        if (isset($a[$xPrefix.'trace'])) {
-            $trace = $a[$xPrefix.'trace'];
-            unset($a[$xPrefix.'trace']); // Ensures the trace is always last
+        if (isset($a[$xPrefix . 'trace'])) {
+            $trace = $a[$xPrefix . 'trace'];
+            unset($a[$xPrefix . 'trace']); // Ensures the trace is always last
         } else {
             $trace = array();
         }
 
         if (!($filter & Caster::EXCLUDE_VERBOSE)) {
-            self::traceUnshift($trace, $xClass, $a[Caster::PREFIX_PROTECTED.'file'], $a[Caster::PREFIX_PROTECTED.'line']);
-            $a[$xPrefix.'trace'] = new TraceStub($trace, self::$traceArgs);
+            self::traceUnshift($trace, $xClass, $a[Caster::PREFIX_PROTECTED . 'file'], $a[Caster::PREFIX_PROTECTED . 'line']);
+            $a[$xPrefix . 'trace'] = new TraceStub($trace, self::$traceArgs);
         }
-        if (empty($a[$xPrefix.'previous'])) {
-            unset($a[$xPrefix.'previous']);
+        if (empty($a[$xPrefix . 'previous'])) {
+            unset($a[$xPrefix . 'previous']);
         }
-        unset($a[$xPrefix.'string'], $a[Caster::PREFIX_DYNAMIC.'xdebug_message'], $a[Caster::PREFIX_DYNAMIC.'__destructorException']);
+        unset($a[$xPrefix . 'string'], $a[Caster::PREFIX_DYNAMIC . 'xdebug_message'], $a[Caster::PREFIX_DYNAMIC . '__destructorException']);
 
-        $a[Caster::PREFIX_PROTECTED.'file'] = new LinkStub($a[Caster::PREFIX_PROTECTED.'file'], $a[Caster::PREFIX_PROTECTED.'line']);
+        $a[Caster::PREFIX_PROTECTED . 'file'] = new LinkStub($a[Caster::PREFIX_PROTECTED . 'file'], $a[Caster::PREFIX_PROTECTED . 'line']);
 
         return $a;
     }
@@ -237,7 +237,7 @@ class ExceptionCaster
             return;
         }
         array_unshift($trace, array(
-            'function' => $class ? 'new '.$class : null,
+            'function' => $class ? 'new ' . $class : null,
             'file' => $file,
             'line' => $line,
         ));
@@ -249,7 +249,7 @@ class ExceptionCaster
         $src = array();
 
         for ($i = $line - 1 - $srcContext; $i <= $line - 1 + $srcContext; ++$i) {
-            $src[] = (isset($srcLines[$i]) ? $srcLines[$i] : '')."\n";
+            $src[] = (isset($srcLines[$i]) ? $srcLines[$i] : '') . "\n";
         }
 
         $srcLines = array();

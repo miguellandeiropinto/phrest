@@ -1,6 +1,7 @@
 <?php
 
 /* foo.twig */
+
 class __TwigTemplate_VarDumperFixture_u75a09 extends Twig_Template
 {
     private $path;

@@ -51,7 +51,7 @@ class Data
     public function withMaxDepth($maxDepth)
     {
         $data = clone $this;
-        $data->maxDepth = (int) $maxDepth;
+        $data->maxDepth = (int)$maxDepth;
 
         return $data;
     }
@@ -66,7 +66,7 @@ class Data
     public function withMaxItemsPerDepth($maxItemsPerDepth)
     {
         $data = clone $this;
-        $data->maxItemsPerDepth = (int) $maxItemsPerDepth;
+        $data->maxItemsPerDepth = (int)$maxItemsPerDepth;
 
         return $data;
     }
@@ -104,9 +104,9 @@ class Data
 
         switch ($item->type) {
             case Stub::TYPE_OBJECT:
-                $keys[] = Caster::PREFIX_DYNAMIC.$key;
-                $keys[] = Caster::PREFIX_PROTECTED.$key;
-                $keys[] = Caster::PREFIX_VIRTUAL.$key;
+                $keys[] = Caster::PREFIX_DYNAMIC . $key;
+                $keys[] = Caster::PREFIX_PROTECTED . $key;
+                $keys[] = Caster::PREFIX_VIRTUAL . $key;
                 $keys[] = "\0$item->class\0$key";
             case Stub::TYPE_ARRAY:
             case Stub::TYPE_RESOURCE:
@@ -143,9 +143,9 @@ class Data
      * Depth-first dumping of items.
      *
      * @param DumperInterface $dumper The dumper being used for dumping
-     * @param Cursor          $cursor A cursor used for tracking dumper state position
-     * @param array           &$refs  A map of all references discovered while dumping
-     * @param mixed           $item   A Stub object or the original value being dumped
+     * @param Cursor $cursor A cursor used for tracking dumper state position
+     * @param array &$refs A map of all references discovered while dumping
+     * @param mixed $item A Stub object or the original value being dumped
      */
     private function dumpItem($dumper, $cursor, &$refs, $item)
     {
@@ -207,7 +207,7 @@ class Data
                     $item = clone $item;
                     $item->type = $item->class;
                     $item->class = $item->value;
-                    // No break;
+                // No break;
                 case Stub::TYPE_OBJECT:
                 case Stub::TYPE_RESOURCE:
                     $withChildren = $children && $cursor->depth !== $this->maxDepth && $this->maxItemsPerDepth;
@@ -237,12 +237,12 @@ class Data
      * Dumps children of hash structures.
      *
      * @param DumperInterface $dumper
-     * @param Cursor          $parentCursor The cursor of the parent hash
-     * @param array           &$refs        A map of all references discovered while dumping
-     * @param array           $children     The children to dump
-     * @param int             $hashCut      The number of items removed from the original hash
-     * @param string          $hashType     A Cursor::HASH_* const
-     * @param bool            $dumpKeys     Whether keys should be dumped or not
+     * @param Cursor $parentCursor The cursor of the parent hash
+     * @param array &$refs A map of all references discovered while dumping
+     * @param array $children The children to dump
+     * @param int $hashCut The number of items removed from the original hash
+     * @param string $hashType A Cursor::HASH_* const
+     * @param bool $dumpKeys Whether keys should be dumped or not
      *
      * @return int The final number of removed items
      */

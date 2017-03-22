@@ -18,11 +18,11 @@ class AlternativeToken implements TokenInterface
             } elseif ($token instanceof self) {
                 // merge nested alternative group
                 foreach ($token->tokens as $token) {
-                    $this->tokens []= $token;
+                    $this->tokens [] = $token;
                 }
             } else {
                 // append any valid alternative token
-                $this->tokens []= $token;
+                $this->tokens [] = $token;
             }
         }
 

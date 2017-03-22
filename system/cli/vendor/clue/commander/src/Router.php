@@ -33,7 +33,7 @@ class Router
     /**
      * Registers a new Route with this Router
      *
-     * @param string   $route   the route expression to match
+     * @param string $route the route expression to match
      * @param callable $handler route callback that will be executed when this route expression matches
      * @return Route
      * @throws InvalidArgumentException if the route expression is invalid

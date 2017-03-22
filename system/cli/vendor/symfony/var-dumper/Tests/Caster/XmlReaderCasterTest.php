@@ -26,7 +26,7 @@ class XmlReaderCasterTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->reader = new \XmlReader();
-        $this->reader->open(__DIR__.'/../Fixtures/xml_reader.xml');
+        $this->reader->open(__DIR__ . '/../Fixtures/xml_reader.xml');
     }
 
     protected function tearDown()

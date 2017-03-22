@@ -60,12 +60,12 @@ class ParserTest extends \PHPUnit_Framework_TestCase
     public function getDataFormSpecifications()
     {
         $parser = new Parser();
-        $path = __DIR__.'/Fixtures';
+        $path = __DIR__ . '/Fixtures';
 
         $tests = array();
-        $files = $parser->parse(file_get_contents($path.'/index.yml'));
+        $files = $parser->parse(file_get_contents($path . '/index.yml'));
         foreach ($files as $file) {
-            $yamls = file_get_contents($path.'/'.$file.'.yml');
+            $yamls = file_get_contents($path . '/' . $file . '.yml');
 
             // split YAMLs documents
             foreach (preg_split('/^---( %YAML\:1\.0)?/m', $yamls) as $yaml) {
@@ -77,7 +77,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
                 if (isset($test['todo']) && $test['todo']) {
                     // TODO
                 } else {
-                    eval('$expected = '.trim($test['php']).';');
+                    eval('$expected = ' . trim($test['php']) . ';');
 
                     $tests[] = array($file, var_export($expected, true), $test['yaml'], $test['test'], isset($test['deprecated']) ? $test['deprecated'] : false);
                 }
@@ -104,7 +104,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
                 $this->fail('YAML files must not contain tabs');
             } catch (\Exception $e) {
                 $this->assertInstanceOf('\Exception', $e, 'YAML files must not contain tabs');
-                $this->assertEquals('A YAML file cannot contain tabs as indentation at line 2 (near "'.strpbrk($yaml, "\t").'").', $e->getMessage(), 'YAML files must not contain tabs');
+                $this->assertEquals('A YAML file cannot contain tabs as indentation at line 2 (near "' . strpbrk($yaml, "\t") . '").', $e->getMessage(), 'YAML files must not contain tabs');
             }
         }
     }
@@ -1135,7 +1135,7 @@ header
 
 footer # comment3
 EOT
-                    ,
+                ,
                 ),
             ),
         );
@@ -1163,7 +1163,7 @@ foo
 baz
 
 EOT
-            ,
+        ,
             'collection' => array(
                 array(
                     'one' => <<<'EOT'
@@ -1172,7 +1172,7 @@ foo
 baz
 
 EOT
-                    ,
+                ,
                 ),
                 array(
                     'two' => <<<'EOT'
@@ -1180,7 +1180,7 @@ foo
 # bar
 baz
 EOT
-                    ,
+                ,
                 ),
             ),
         );
@@ -1245,7 +1245,7 @@ EOT;
 <h2>A heading</h2>
 <ul> <li>a list</li> <li>may be a good example</li> </ul>
 EOT
-                ,
+            ,
             ),
             $this->parser->parse($yaml)
         );
@@ -1272,7 +1272,7 @@ EOT;
   <li>may be a good example</li>
 </ul>
 EOT
-                ,
+            ,
             ),
             $this->parser->parse($yaml)
         );
@@ -1297,13 +1297,13 @@ EOT
 data: !!binary |
     SGVsbG8gd29ybGQ=
 EOT
-    ),
+            ),
             'containing spaces in block scalar' => array(
                 <<<'EOT'
 data: !!binary |
     SGVs bG8gd 29ybGQ=
 EOT
-    ),
+            ),
         );
     }
 
@@ -1329,7 +1329,7 @@ EOT
 data: !!binary |
     SGVsbG8d29ybGQ=
 EOT
-                ,
+            ,
                 '/The normalized base64 encoded data \(data without whitespace characters\) length must be a multiple of four \(\d+ bytes given\)/',
             ),
             'invalid characters in block scalar' => array(
@@ -1337,7 +1337,7 @@ EOT
 data: !!binary |
     SGVsbG8#d29ybGQ=
 EOT
-                ,
+            ,
                 '/The base64 encoded data \(.*\) contains invalid characters/',
             ),
             'too many equals characters in block scalar' => array(
@@ -1345,7 +1345,7 @@ EOT
 data: !!binary |
     SGVsbG8gd29yb===
 EOT
-                ,
+            ,
                 '/The base64 encoded data \(.*\) contains invalid characters/',
             ),
             'misplaced equals character in block scalar' => array(
@@ -1353,7 +1353,7 @@ EOT
 data: !!binary |
     SGVsbG8gd29ybG=Q
 EOT
-                ,
+            ,
                 '/The base64 encoded data \(.*\) contains invalid characters/',
             ),
         );

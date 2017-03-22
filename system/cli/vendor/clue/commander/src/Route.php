@@ -20,8 +20,8 @@ class Route implements TokenInterface
     /**
      * Instantiate new Router object
      *
-     * @param TokenInterface|null $token   the optional route token to match. If no token is given, this matches only the empty input.
-     * @param callable            $handler the route callback to execute if this route matches
+     * @param TokenInterface|null $token the optional route token to match. If no token is given, this matches only the empty input.
+     * @param callable $handler the route callback to execute if this route matches
      * @throws InvalidArgumentException if the given $handler is not a valid callable
      */
     public function __construct(TokenInterface $token = null, $handler)

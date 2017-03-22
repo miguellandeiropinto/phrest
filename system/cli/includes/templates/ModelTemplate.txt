@@ -1,17 +1,18 @@
 <?php
 
-  namespace {namespace}\Models;
+namespace {namespace}\Models;
 
-  use System\Database\Model;
+use System\Database\Model;
 
-  class {class_name} extends Model
-  {
+class {class_name} extends Model
+{
 
     protected $table = "{table}";
     protected $fillable = {fillable};
-    protected $xmlNamespace = "{xmlNamespace}";
     protected $xmlRoot = "{xmlRoot}";
+    protected $collectionXmlRoot = "{collectionXmlRoot}";
+    protected $xmlNamespace = "{xmlNamespace}";
 
-  }
+}
 
 ?>

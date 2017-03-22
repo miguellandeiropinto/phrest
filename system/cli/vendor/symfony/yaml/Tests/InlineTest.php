@@ -103,7 +103,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
         try {
             $requiredLocales = array('fr_FR.UTF-8', 'fr_FR.UTF8', 'fr_FR.utf-8', 'fr_FR.utf8', 'French_France.1252');
             if (false === setlocale(LC_NUMERIC, $requiredLocales)) {
-                $this->markTestSkipped('Could not set any of required locales: '.implode(', ', $requiredLocales));
+                $this->markTestSkipped('Could not set any of required locales: ' . implode(', ', $requiredLocales));
             }
 
             $this->assertEquals('1.2', Inline::dump(1.2));
@@ -452,41 +452,41 @@ class InlineTest extends \PHPUnit_Framework_TestCase
             array('[\'foo,bar\', \'foo bar\']', array('foo,bar', 'foo bar')),
 
             // mappings
-            array('{foo: bar,bar: foo,false: false,null: null,integer: 12}', (object) array('foo' => 'bar', 'bar' => 'foo', 'false' => false, 'null' => null, 'integer' => 12)),
-            array('{ foo  : bar, bar : foo,  false  :   false,  null  :   null,  integer :  12  }', (object) array('foo' => 'bar', 'bar' => 'foo', 'false' => false, 'null' => null, 'integer' => 12)),
-            array('{foo: \'bar\', bar: \'foo: bar\'}', (object) array('foo' => 'bar', 'bar' => 'foo: bar')),
-            array('{\'foo\': \'bar\', "bar": \'foo: bar\'}', (object) array('foo' => 'bar', 'bar' => 'foo: bar')),
-            array('{\'foo\'\'\': \'bar\', "bar\"": \'foo: bar\'}', (object) array('foo\'' => 'bar', 'bar"' => 'foo: bar')),
-            array('{\'foo: \': \'bar\', "bar: ": \'foo: bar\'}', (object) array('foo: ' => 'bar', 'bar: ' => 'foo: bar')),
+            array('{foo: bar,bar: foo,false: false,null: null,integer: 12}', (object)array('foo' => 'bar', 'bar' => 'foo', 'false' => false, 'null' => null, 'integer' => 12)),
+            array('{ foo  : bar, bar : foo,  false  :   false,  null  :   null,  integer :  12  }', (object)array('foo' => 'bar', 'bar' => 'foo', 'false' => false, 'null' => null, 'integer' => 12)),
+            array('{foo: \'bar\', bar: \'foo: bar\'}', (object)array('foo' => 'bar', 'bar' => 'foo: bar')),
+            array('{\'foo\': \'bar\', "bar": \'foo: bar\'}', (object)array('foo' => 'bar', 'bar' => 'foo: bar')),
+            array('{\'foo\'\'\': \'bar\', "bar\"": \'foo: bar\'}', (object)array('foo\'' => 'bar', 'bar"' => 'foo: bar')),
+            array('{\'foo: \': \'bar\', "bar: ": \'foo: bar\'}', (object)array('foo: ' => 'bar', 'bar: ' => 'foo: bar')),
 
             // nested sequences and mappings
             array('[foo, [bar, foo]]', array('foo', array('bar', 'foo'))),
-            array('[foo, {bar: foo}]', array('foo', (object) array('bar' => 'foo'))),
-            array('{ foo: {bar: foo} }', (object) array('foo' => (object) array('bar' => 'foo'))),
-            array('{ foo: [bar, foo] }', (object) array('foo' => array('bar', 'foo'))),
+            array('[foo, {bar: foo}]', array('foo', (object)array('bar' => 'foo'))),
+            array('{ foo: {bar: foo} }', (object)array('foo' => (object)array('bar' => 'foo'))),
+            array('{ foo: [bar, foo] }', (object)array('foo' => array('bar', 'foo'))),
 
             array('[  foo, [  bar, foo  ]  ]', array('foo', array('bar', 'foo'))),
 
-            array('[{ foo: {bar: foo} }]', array((object) array('foo' => (object) array('bar' => 'foo')))),
+            array('[{ foo: {bar: foo} }]', array((object)array('foo' => (object)array('bar' => 'foo')))),
 
             array('[foo, [bar, [foo, [bar, foo]], foo]]', array('foo', array('bar', array('foo', array('bar', 'foo')), 'foo'))),
 
-            array('[foo, {bar: foo, foo: [foo, {bar: foo}]}, [foo, {bar: foo}]]', array('foo', (object) array('bar' => 'foo', 'foo' => array('foo', (object) array('bar' => 'foo'))), array('foo', (object) array('bar' => 'foo')))),
+            array('[foo, {bar: foo, foo: [foo, {bar: foo}]}, [foo, {bar: foo}]]', array('foo', (object)array('bar' => 'foo', 'foo' => array('foo', (object)array('bar' => 'foo'))), array('foo', (object)array('bar' => 'foo')))),
 
-            array('[foo, bar: { foo: bar }]', array('foo', '1' => (object) array('bar' => (object) array('foo' => 'bar')))),
-            array('[foo, \'@foo.baz\', { \'%foo%\': \'foo is %foo%\', bar: \'%foo%\' }, true, \'@service_container\']', array('foo', '@foo.baz', (object) array('%foo%' => 'foo is %foo%', 'bar' => '%foo%'), true, '@service_container')),
+            array('[foo, bar: { foo: bar }]', array('foo', '1' => (object)array('bar' => (object)array('foo' => 'bar')))),
+            array('[foo, \'@foo.baz\', { \'%foo%\': \'foo is %foo%\', bar: \'%foo%\' }, true, \'@service_container\']', array('foo', '@foo.baz', (object)array('%foo%' => 'foo is %foo%', 'bar' => '%foo%'), true, '@service_container')),
 
             array('{}', new \stdClass()),
-            array('{ foo  : bar, bar : {}  }', (object) array('foo' => 'bar', 'bar' => new \stdClass())),
-            array('{ foo  : [], bar : {}  }', (object) array('foo' => array(), 'bar' => new \stdClass())),
-            array('{foo: \'bar\', bar: {} }', (object) array('foo' => 'bar', 'bar' => new \stdClass())),
-            array('{\'foo\': \'bar\', "bar": {}}', (object) array('foo' => 'bar', 'bar' => new \stdClass())),
-            array('{\'foo\': \'bar\', "bar": \'{}\'}', (object) array('foo' => 'bar', 'bar' => '{}')),
+            array('{ foo  : bar, bar : {}  }', (object)array('foo' => 'bar', 'bar' => new \stdClass())),
+            array('{ foo  : [], bar : {}  }', (object)array('foo' => array(), 'bar' => new \stdClass())),
+            array('{foo: \'bar\', bar: {} }', (object)array('foo' => 'bar', 'bar' => new \stdClass())),
+            array('{\'foo\': \'bar\', "bar": {}}', (object)array('foo' => 'bar', 'bar' => new \stdClass())),
+            array('{\'foo\': \'bar\', "bar": \'{}\'}', (object)array('foo' => 'bar', 'bar' => '{}')),
 
             array('[foo, [{}, {}]]', array('foo', array(new \stdClass(), new \stdClass()))),
             array('[foo, [[], {}]]', array('foo', array(array(), new \stdClass()))),
             array('[foo, [[{}, {}], {}]]', array('foo', array(array(new \stdClass(), new \stdClass()), new \stdClass()))),
-            array('[foo, {bar: {}}]', array('foo', '1' => (object) array('bar' => new \stdClass()))),
+            array('[foo, {bar: {}}]', array('foo', '1' => (object)array('bar' => new \stdClass()))),
         );
     }
 
@@ -570,7 +570,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
         $expected->setDate($year, $month, $day);
 
         if (PHP_VERSION_ID >= 70100) {
-            $expected->setTime($hour, $minute, $second, 1000000 * ($second - (int) $second));
+            $expected->setTime($hour, $minute, $second, 1000000 * ($second - (int)$second));
         } else {
             $expected->setTime($hour, $minute, $second);
         }
@@ -599,7 +599,7 @@ class InlineTest extends \PHPUnit_Framework_TestCase
         $expected->setTimeZone(new \DateTimeZone('UTC'));
         $expected->setDate($year, $month, $day);
         if (PHP_VERSION_ID >= 70100) {
-            $expected->setTime($hour, $minute, $second, 1000000 * ($second - (int) $second));
+            $expected->setTime($hour, $minute, $second, 1000000 * ($second - (int)$second));
         } else {
             $expected->setTime($hour, $minute, $second);
         }

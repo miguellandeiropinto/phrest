@@ -58,7 +58,7 @@ class Tokenizer
                 throw new InvalidArgumentException('Missing whitespace between tokens');
             }
 
-            $tokens []= $this->readToken($input, $i);
+            $tokens [] = $this->readToken($input, $i);
         }
 
         // return a single token as-is
@@ -73,7 +73,7 @@ class Tokenizer
     private function consumeOptionalWhitespace($input, &$i)
     {
         // skip whitespace characters
-        for (;isset($input[$i]) && in_array($input[$i], $this->ws); ++$i);
+        for (; isset($input[$i]) && in_array($input[$i], $this->ws); ++$i) ;
     }
 
     private function readToken($input, &$i, $readEllipses = true)
@@ -104,7 +104,7 @@ class Tokenizer
     private function readArgument($input, &$i)
     {
         // start of argument found, search end token `>`
-        for ($start = $i++; isset($input[$i]) && $input[$i] !== '>'; ++$i);
+        for ($start = $i++; isset($input[$i]) && $input[$i] !== '>'; ++$i) ;
 
         // no end token found, syntax error
         if (!isset($input[$i])) {
@@ -173,7 +173,7 @@ class Tokenizer
         $tokens = array();
 
         while (true) {
-            $tokens []= $this->readSentenceOrSingle($input, $i);
+            $tokens [] = $this->readSentenceOrSingle($input, $i);
 
             // end of input reached or end token found
             if (!isset($input[$i]) || strpos('])', $input[$i]) !== false) {
@@ -250,7 +250,7 @@ class Tokenizer
             }
 
             $token = new OptionToken($word, $placeholder, $required);
-        } else{
+        } else {
             $token = new WordToken($word);
         }
 
